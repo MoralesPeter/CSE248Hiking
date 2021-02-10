@@ -1,0 +1,11 @@
+package model;
+
+public class Trail {
+	
+	private String name;
+	private String trailHead;
+	private double length;
+	private double elevationGain;
+	private int difficulty; //0=easy, 1=moderate, 2=hard
+	private int type; //0=loop, 1=out and back, 2=point-to-point
+}

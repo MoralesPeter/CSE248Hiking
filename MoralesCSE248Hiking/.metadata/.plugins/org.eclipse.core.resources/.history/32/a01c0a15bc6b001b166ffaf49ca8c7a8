@@ -1,0 +1,11 @@
+package model;
+
+public class Admin extends User {
+
+	public Admin(String username, String password, String firstName, String lastName, long phoneNumber,
+			String imagePath, HikingHistory hikingHistory) {
+		super(username, password, firstName, lastName, phoneNumber, imagePath, hikingHistory);
+		// TODO Auto-generated constructor stub
+	}
+	
+}
