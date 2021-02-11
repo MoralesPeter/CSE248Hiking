@@ -1,0 +1,19 @@
+package model;
+
+import java.io.Serializable;
+import java.util.LinkedList;
+
+public class HikedTrail implements Serializable {
+	
+	private Trail t;
+	private String dateStart;
+	private String dateFinish;
+	private double distanceHiked;
+	private double duration;
+	private LinkedList<String> imagePaths = new LinkedList<>();
+	private double averagePace; //mins / miles
+	
+	public HikedTrail(Trail t, String dateStart, String dateFinish, double distanceHiked, double duration, LinkedList<String> imagePaths, double averagePace) {
+		
+	}
+}

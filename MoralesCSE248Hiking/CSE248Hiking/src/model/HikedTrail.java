@@ -5,6 +5,11 @@ import java.util.LinkedList;
 
 public class HikedTrail implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7408196588410411737L;
+	
 	private Trail t;
 	private String dateStart;
 	private String dateFinish;
@@ -15,5 +20,61 @@ public class HikedTrail implements Serializable {
 	
 	public HikedTrail(Trail t, String dateStart, String dateFinish, double distanceHiked, double duration, LinkedList<String> imagePaths, double averagePace) {
 		
+	}
+	
+	public Trail getT() {
+		return t;
+	}
+
+	public void setT(Trail t) {
+		this.t = t;
+	}
+
+	public String getDateStart() {
+		return dateStart;
+	}
+
+	public void setDateStart(String dateStart) {
+		this.dateStart = dateStart;
+	}
+
+	public String getDateFinish() {
+		return dateFinish;
+	}
+
+	public void setDateFinish(String dateFinish) {
+		this.dateFinish = dateFinish;
+	}
+
+	public double getDistanceHiked() {
+		return distanceHiked;
+	}
+
+	public void setDistanceHiked(double distanceHiked) {
+		this.distanceHiked = distanceHiked;
+	}
+
+	public double getDuration() {
+		return duration;
+	}
+
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
+
+	public LinkedList<String> getImagePaths() {
+		return imagePaths;
+	}
+
+	public void setImagePaths(LinkedList<String> imagePaths) {
+		this.imagePaths = imagePaths;
+	}
+
+	public double getAveragePace() {
+		return averagePace;
+	}
+
+	public void setAveragePace(double averagePace) {
+		this.averagePace = averagePace;
 	}
 }

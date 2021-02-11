@@ -9,6 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TrailStorage implements Serializable {
 	
@@ -25,6 +27,16 @@ public class TrailStorage implements Serializable {
 	
 	public void addTrail(Trail t) {
 		trailStorage.add(t);
+	}
+	
+	public List<Trail> search(String input) {
+		List<Trail> list = trailStorage.stream()
+		.filter(x -> x.getName().contains(input) || x.getTrailHead().contains(input)
+		|| x.lengthString().contains(input) || x.elevationGainString().contains(input)
+		|| x.difficultyString().contains(input) || x.typeString().contains(input))
+		.sorted()
+		.collect(Collectors.toList());
+		return list;
 	}
 	
 	@SuppressWarnings("unchecked")

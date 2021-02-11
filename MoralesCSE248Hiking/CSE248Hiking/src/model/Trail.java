@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Trail implements Serializable {
+public class Trail implements Serializable, Comparable<Trail> {
 	
 	/**
 	 * 
@@ -17,7 +17,12 @@ public class Trail implements Serializable {
 	private int type; //0=loop, 1=out and back, 2=point-to-point
 	
 	public Trail(String name, String trailHead, double length, double elevationGain, int difficulty, int type) {
-		
+		this.name = name;
+		this.trailHead = trailHead;
+		this.length = length;
+		this.elevationGain = elevationGain;
+		this.difficulty = difficulty;
+		this.type = type;
 	}
 	
 	public String getName() {
@@ -39,7 +44,11 @@ public class Trail implements Serializable {
 	public double getLength() {
 		return length;
 	}
-
+	
+	public String lengthString() {
+		return Double.toString(this.length);
+	}
+	
 	public void setLength(double length) {
 		this.length = length;
 	}
@@ -47,7 +56,11 @@ public class Trail implements Serializable {
 	public double getElevationGain() {
 		return elevationGain;
 	}
-
+	
+	public String elevationGainString() {
+		return Double.toString(this.elevationGain);
+	}
+	
 	public void setElevationGain(double elevationGain) {
 		this.elevationGain = elevationGain;
 	}
@@ -59,12 +72,47 @@ public class Trail implements Serializable {
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
-
+	
+	public String difficultyString() {
+		if(this.difficulty == 0) {
+			return "Easy";
+		} else if(this.difficulty == 1) {
+			return "Moderate";
+		} else {
+			return "Hard";
+		}
+	}
+	
 	public int getType() {
 		return type;
 	}
 
 	public void setType(int type) {
 		this.type = type;
+	}
+	
+	public String typeString() {
+		if(this.type == 0) {
+			return "Loop";
+		} else if(this.type == 1) {
+			return "Out and back";
+		} else {
+			return "Point-to-point";
+		}
+	}
+	
+	public String toString() {
+		return "Name: " + name + " Trailhead: " + trailHead + " Length: " + Double.toString(length) + " Elevation Gain: " + Double.toString(elevationGain) + " Difficulty: " + difficultyString() + " Type: " + typeString();
+	}
+
+	@Override
+	public int compareTo(Trail t) {
+		if(this.name.compareTo(t.name) > 0) {
+			return 1;
+		} else if(this.name.compareTo(t.name) < 0) {
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 }

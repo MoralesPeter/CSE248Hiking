@@ -15,4 +15,27 @@ public class Admin implements Serializable {
 		user = new User(username, password, firstName, lastName, phoneNumber, imagePath);
 	}
 	
+	public User getUser() {
+		return user;
+	}
+	
+	public void changePassword(User u, String password) {
+		u.setPassword(password);
+	}
+	
+	public void changeFirstName(User u, String firstName) {
+		u.setFirstName(firstName);
+	}
+	
+	public void changeLastName(User u, String lastName) {
+		u.setLastName(lastName);
+	}
+	
+	public void changePhoneNumber(User u, long phoneNumber) {
+		u.setPhoneNumber(phoneNumber);
+	}
+	
+	public void changeImagePath(User u, String imagePath) {
+		u.setImagePath(imagePath);
+	}
 }

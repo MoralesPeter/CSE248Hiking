@@ -1,0 +1,14 @@
+package app;
+
+import model.Trail;
+
+public class test {
+
+	public static void main(String[] args) {
+		Trail t0 = new Trail("name0", "trailhead0", 1.0, 2.0, 0, 0);
+		Trail t1 = new Trail("name1", "trailhead1", 1.0, 2.0, 0, 0);
+		Trail t2 = new Trail("name2", "trailhead2", 1.0, 2.0, 0, 0);
+		
+	}
+
+}
