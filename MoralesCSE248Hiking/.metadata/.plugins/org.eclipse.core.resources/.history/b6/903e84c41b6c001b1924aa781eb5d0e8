@@ -1,0 +1,13 @@
+package model;
+
+public class Utilities {
+	
+	public static boolean authenticateUser(String username, String password, UserStorage userStorage) {
+		User u = userStorage.searchUser(username);
+		if(password.equals(u.getPassword())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}

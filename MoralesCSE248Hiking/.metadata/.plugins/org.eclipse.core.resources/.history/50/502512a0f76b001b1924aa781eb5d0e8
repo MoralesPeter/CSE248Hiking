@@ -1,0 +1,28 @@
+package model;
+
+import java.io.Serializable;
+
+public class User implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4999623355776345732L;
+	
+	private String username;
+	private String password;
+	private String firstName;
+	private String lastName;
+	private long phoneNumber;
+	private String imagePath;
+	private HikingHistory hikingHistory = new HikingHistory();
+	
+	public User(String username, String password, String firstName, String lastName, long phoneNumber, String imagePath) {
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.imagePath = imagePath;
+	}
+}

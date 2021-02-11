@@ -1,0 +1,17 @@
+package model;
+
+import java.io.Serializable;
+import java.util.TreeMap;
+
+public class UserStorage implements Serializable {
+	
+	private TreeMap<String, User> userStorage = new TreeMap<>();
+	
+	public UserStorage() {
+		
+	}
+	
+	public void addUser(String username, User u) {
+		userStorage.put(username, u);
+	}
+}

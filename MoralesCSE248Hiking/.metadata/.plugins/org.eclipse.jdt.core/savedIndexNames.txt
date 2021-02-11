@@ -1,11 +1,12 @@
-INDEX VERSION 1.131+C:\Users\Peter\Documents\MoralesCSE248\MoralesCSE248Hiking\.metadata\.plugins\org.eclipse.jdt.core
+INDEX VERSION 1.131+C:\Users\Peter\Documents\MoralesCSE248\cse248hiking\MoralesCSE248Hiking\.metadata\.plugins\org.eclipse.jdt.core
+2255629631.index
+2677328776.index
+720034230.index
 398719025.index
+1808303126.index
+3438566573.index
+2964743764.index
+1590566453.index
+739912557.index
 470730824.index
 3201168220.index
-2677328776.index
-2964743764.index
-3438566573.index
-720034230.index
-2255629631.index
-739912557.index
-1808303126.index

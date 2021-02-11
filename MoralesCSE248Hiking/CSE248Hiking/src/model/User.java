@@ -1,6 +1,13 @@
 package model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4999623355776345732L;
 	
 	private String username;
 	private String password;
@@ -8,9 +15,62 @@ public class User {
 	private String lastName;
 	private long phoneNumber;
 	private String imagePath;
-	private HikingHistory hikingHistory;
+	private HikingHistory hikingHistory = new HikingHistory();
 	
-	public User(String username, String password, String firstName, String lastName, long phoneNumber, String imagePath, HikingHistory hikingHistory) {
-		
+	public User(String username, String password, String firstName, String lastName, long phoneNumber, String imagePath) {
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.imagePath = imagePath;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public HikingHistory getHikingHistory() {
+		return hikingHistory;
 	}
 }

@@ -1,0 +1,21 @@
+package model;
+
+import java.io.Serializable;
+import java.util.HashSet;
+
+public class TrailStorage implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 226044182497471384L;
+	private HashSet<Trail> trailStorage = new HashSet<>(50000);
+	
+	public TrailStorage() {
+		
+	}
+	
+	public void addTrail(Trail t) {
+		trailStorage.add(t);
+	}
+}

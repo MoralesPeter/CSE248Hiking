@@ -1,0 +1,21 @@
+package model;
+
+import java.io.Serializable;
+import java.util.TreeMap;
+
+public class UserStorage implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3333114558612278535L;
+	private TreeMap<String, User> userStorage = new TreeMap<>();
+	
+	public UserStorage() {
+		
+	}
+	
+	public void addUser(String username, User u) {
+		userStorage.put(username, u);
+	}
+}

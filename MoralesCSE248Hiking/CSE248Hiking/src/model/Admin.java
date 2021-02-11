@@ -1,11 +1,18 @@
 package model;
 
-public class Admin extends User {
+import java.io.Serializable;
 
-	public Admin(String username, String password, String firstName, String lastName, long phoneNumber,
-			String imagePath, HikingHistory hikingHistory) {
-		super(username, password, firstName, lastName, phoneNumber, imagePath, hikingHistory);
-		
+public class Admin implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2990723706639097331L;
+
+	private User user;
+	
+	public Admin(String username, String password, String firstName, String lastName, long phoneNumber, String imagePath) {
+		user = new User(username, password, firstName, lastName, phoneNumber, imagePath);
 	}
 	
 }

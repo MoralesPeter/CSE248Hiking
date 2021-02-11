@@ -1,0 +1,12 @@
+package model;
+
+import java.util.HashSet;
+
+public class TrailStorage {
+	
+	private HashSet<Trail> trailStorage = new HashSet<>(50000);
+	
+	public TrailStorage() {
+		
+	}
+}
