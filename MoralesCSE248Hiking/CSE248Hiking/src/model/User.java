@@ -15,6 +15,7 @@ public class User implements Serializable {
 	private String lastName;
 	private long phoneNumber;
 	private String imagePath;
+	private boolean isActive;
 	private HikingHistory hikingHistory = new HikingHistory();
 	
 	public User(String username, String password, String firstName, String lastName, long phoneNumber, String imagePath) {
@@ -24,6 +25,7 @@ public class User implements Serializable {
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
 		this.imagePath = imagePath;
+		this.setActive(true);
 	}
 
 	public String getUsername() {
@@ -69,7 +71,15 @@ public class User implements Serializable {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+	
+	public boolean isActive() {
+		return isActive;
+	}
 
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	
 	public HikingHistory getHikingHistory() {
 		return hikingHistory;
 	}

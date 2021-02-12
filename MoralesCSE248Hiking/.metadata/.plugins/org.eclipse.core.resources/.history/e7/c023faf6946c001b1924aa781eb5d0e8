@@ -1,0 +1,20 @@
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
+public class contLogIn {
+
+    @FXML
+    private TextField tfUsername;
+
+    @FXML
+    private PasswordField tfPassword;
+
+    @FXML
+    private Button btnLogIn;
+
+    @FXML
+    private Button btnCreateUser;
+
+}

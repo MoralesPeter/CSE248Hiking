@@ -2,3 +2,8 @@
 1613054380271	Encapsulate field 'user'
 1613061468981	Rename compilation unit 'test.java'
 1613061515330	Delete element
+1613088438909	Delete element
+1613088611899	Rename resource 'Test.fxml'
+1613089502443	Rename type 'test2'
+1613089528245	Rename type 'contLogIn'
+1613090116193	Encapsulate field 'isActive'

@@ -19,7 +19,7 @@ public class HikedTrail implements Serializable {
 	private double averagePace; //mins / miles
 	
 	public HikedTrail(Trail t, String dateStart, String dateFinish, double distanceHiked, double duration, LinkedList<String> imagePaths, double averagePace) {
-		
+		this.averagePace = duration / t.getLength();
 	}
 	
 	public Trail getT() {
@@ -72,9 +72,5 @@ public class HikedTrail implements Serializable {
 
 	public double getAveragePace() {
 		return averagePace;
-	}
-
-	public void setAveragePace(double averagePace) {
-		this.averagePace = averagePace;
 	}
 }

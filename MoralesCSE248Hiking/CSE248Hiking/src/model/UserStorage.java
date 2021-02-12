@@ -23,9 +23,12 @@ public class UserStorage implements Serializable {
 		
 	}
 	
-	public void addUser(String username, User u) {
+	public boolean addUser(String username, User u) {
 		if(!userStorage.containsKey(username)) {
 			userStorage.put(username, u);
+			return true;
+		} else { 
+			return false;
 		}
 	}
 	
@@ -51,4 +54,6 @@ public class UserStorage implements Serializable {
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("UserStorage.dat")));
 		oos.writeObject(userStorage);
 	}
+
+	
 }
