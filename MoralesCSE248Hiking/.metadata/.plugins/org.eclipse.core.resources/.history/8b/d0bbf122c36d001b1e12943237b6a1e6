@@ -1,0 +1,105 @@
+package controller;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import model.Trail;
+import model.TrailStorage;
+
+public class TrailViewController {
+	private TrailStorage trailStorage = new TrailStorage();
+	private ObservableList<Trail> obsTrailList;
+	private List<Trail> trailList;
+	
+    @FXML
+    private ListView<Trail> lvTrails;
+
+    @FXML
+    private TextField tfSearch;
+
+    @FXML
+    private Button btnRecordHike;
+    
+    @FXML
+    private Button btnFilter;
+    
+    @FXML
+    private ComboBox<String> cbDifficulty;
+    
+    @FXML
+    private ComboBox<String> cbType;
+    
+    public void initialize() throws FileNotFoundException, ClassNotFoundException, IOException {
+    	trailStorage.initialize();
+    	cbDifficulty.getItems().add("Filter by Difficulty");
+    	cbDifficulty.getItems().add("Easy");
+    	cbDifficulty.getItems().add("Moderate");
+    	cbDifficulty.getItems().add("Hard");
+    	cbType.getItems().add("Filter by Type");
+    	cbType.getItems().add("Loop");
+    	cbType.getItems().add("Out and back");
+    	cbType.getItems().add("Point-to-point");
+    }
+
+	public void search(KeyEvent event) {
+		List<Trail> trailList = trailStorage.search(tfSearch.getText());
+		obsTrailList = FXCollections.observableList(trailList);
+		lvTrails.setItems(obsTrailList);
+	}
+	
+	public void filter(ActionEvent event) {
+		if(tfSearch == null) {
+			if(cbDifficulty.getValue()!= null && !cbDifficulty.getValue().equals("Filter by Difficulty") && cbType.getValue() != null && !cbType.getValue().equals("Filter by Type")) {
+				//something selected in both boxes
+				trailList = trailStorage.search(cbDifficulty.getValue());
+				trailList = trailList.stream()
+				.filter(x -> x.typeString().contains(cbType.getValue()))
+				.collect(Collectors.toList());
+			} else if(cbDifficulty.getValue() == null || cbDifficulty.getValue().equals("Filter by Difficulty")) {
+				//nothing selected in difficulty box
+				trailList = trailStorage.search(cbType.getValue());
+			} else if(cbType.getValue() == null || cbType.getValue().equals("Filter by Type")) {
+				//nothing selected in type box
+				trailList = trailStorage.search(cbDifficulty.getValue());
+			} else {
+				
+			}
+			obsTrailList = FXCollections.observableList(trailList);
+			lvTrails.setItems(obsTrailList);
+		} else if (tfSearch.getText() != null) {
+			trailList = trailStorage.search(tfSearch.getText());
+			if(cbDifficulty.getValue()!= null && !cbDifficulty.getValue().equals("Filter by Difficulty") && cbType.getValue() != null && !cbType.getValue().equals("Filter by Type")) {
+				//something selected in both boxes
+				trailList = trailList.stream()
+				.filter(x -> x.difficultyString().contains(cbDifficulty.getValue()) 
+				&& x.typeString().contains(cbType.getValue()))
+				.collect(Collectors.toList());
+			} else if(cbDifficulty.getValue() == null || cbDifficulty.getValue().equals("Filter by Difficulty")) {
+				//nothing selected in difficulty box
+				trailList = trailList.stream()
+				.filter(x -> x.difficultyString().contains(cbType.getValue()))
+				.collect(Collectors.toList());
+			} else if(cbType.getValue() == null || cbType.getValue().equals("Filter by Type")) {
+				//nothing selected in type box
+				trailList = trailList.stream()
+				.filter(x -> x.difficultyString().contains(cbDifficulty.getValue()))
+				.collect(Collectors.toList());
+			} else {
+				
+			}
+			obsTrailList = FXCollections.observableList(trailList);
+			lvTrails.setItems(obsTrailList);
+		}
+	}
+}

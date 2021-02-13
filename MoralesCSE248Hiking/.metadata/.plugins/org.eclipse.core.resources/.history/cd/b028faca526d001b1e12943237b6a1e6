@@ -1,0 +1,20 @@
+package controller;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+
+public class TrailViewController {
+
+    @FXML
+    private ListView<Trail> lvTrails;
+
+    @FXML
+    private TextField tfSearch;
+
+    @FXML
+    private Button btnRecordHike;
+    
+    
+}

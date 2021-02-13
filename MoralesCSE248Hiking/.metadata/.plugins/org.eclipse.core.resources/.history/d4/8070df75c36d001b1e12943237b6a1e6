@@ -24,9 +24,6 @@ public class test {
 		theStorage.addTrail(t1);
 		theStorage.addTrail(t2);
 		theStorage.addTrail(t3);
-		theStorage.addTrail(t4);
-		theStorage.addTrail(t5);
-		theStorage.addTrail(t6);
 		theStorage.save();
 		System.out.println(theStorage.search("2"));
 		

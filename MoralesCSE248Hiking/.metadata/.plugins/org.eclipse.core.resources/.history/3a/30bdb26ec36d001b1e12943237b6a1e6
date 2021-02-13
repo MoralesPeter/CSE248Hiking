@@ -17,16 +17,12 @@ public class test {
 		Trail t2 = new Trail("name2", "trailhead2", 1.0, 3.0, 0, 0);
 		Trail t3 = new Trail("name3", "trailhead2", 1.0, 4.0, 0, 0);
 		Trail t4 = new Trail("name4", "trailhead3", 10, 40, 2, 2);
-		Trail t5 = new Trail("name5", "trailhead3", 10, 40, 1, 1);
-		Trail t6 = new Trail("name6", "trailhead4", 10, 40, 0, 2);
+		Trail t5 = new Trail("name4", "trailhead3", 10, 40, 1, 1);
 		TrailStorage theStorage = new TrailStorage();
 		theStorage.addTrail(t0);
 		theStorage.addTrail(t1);
 		theStorage.addTrail(t2);
 		theStorage.addTrail(t3);
-		theStorage.addTrail(t4);
-		theStorage.addTrail(t5);
-		theStorage.addTrail(t6);
 		theStorage.save();
 		System.out.println(theStorage.search("2"));
 		

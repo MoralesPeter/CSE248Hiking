@@ -1,0 +1,39 @@
+package controller;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import model.Trail;
+import model.TrailStorage;
+
+public class TrailViewController {
+	private TrailStorage trailStorage = new TrailStorage();
+	private ObservableList<Trail> obsTrailList;
+	
+    @FXML
+    private ListView<Trail> lvTrails;
+
+    @FXML
+    private TextField tfSearch;
+
+    @FXML
+    private Button btnRecordHike;
+    
+    public void initialize() throws FileNotFoundException, ClassNotFoundException, IOException {
+    	trailStorage.initialize();
+    }
+
+	public void search(KeyEvent event) {
+		List<Trail> trailList = trailStorage.search(tfSearch.getText());
+		obsTrailList = FXCollections.observableList(trailList);
+		lvTrails.setItems(obsTrailList);
+	}
+}
