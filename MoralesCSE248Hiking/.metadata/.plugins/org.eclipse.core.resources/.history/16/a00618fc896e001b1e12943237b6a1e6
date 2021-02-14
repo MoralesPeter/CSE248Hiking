@@ -1,0 +1,46 @@
+package app;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import model.Admin;
+import model.Hiker;
+import model.Trail;
+import model.TrailStorage;
+import model.User;
+import model.UserStorage;
+
+public class test {
+
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		Trail t0 = new Trail("name0", "trailhead0", 1.0, 5.0, 0, 0);
+		Trail t1 = new Trail("name1", "trailhead1", 1.0, 2.0, 0, 0);
+		Trail t2 = new Trail("name2", "trailhead2", 1.0, 3.0, 0, 0);
+		Trail t3 = new Trail("name3", "trailhead2", 1.0, 4.0, 0, 0);
+		Trail t4 = new Trail("name4", "trailhead3", 10, 40, 2, 2);
+		Trail t5 = new Trail("name5", "trailhead3", 10, 40, 1, 1);
+		Trail t6 = new Trail("name6", "trailhead4", 10, 40, 0, 2);
+		TrailStorage theStorage = new TrailStorage();
+		theStorage.addTrail(t0);
+		theStorage.addTrail(t1);
+		theStorage.addTrail(t2);
+		theStorage.addTrail(t3);
+		theStorage.addTrail(t4);
+		theStorage.addTrail(t5);
+		theStorage.addTrail(t6);
+		theStorage.save();
+		System.out.println(theStorage.search("2"));
+		
+		
+		UserStorage userStorage = new UserStorage();
+		File defaultImage = new File("default-user.png");
+		Hiker h = new Hiker("user", "a", "John", "Doe", 5558675309L, defaultImage);
+		Admin a = new Admin("admin", "b", "Jane", "Doe", 5558675309L, defaultImage);
+		userStorage.addUser("user", h);
+		userStorage.addUser("admin", a);
+		userStorage.save();
+		
+	}
+
+}

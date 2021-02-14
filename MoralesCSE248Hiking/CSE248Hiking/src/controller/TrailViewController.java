@@ -35,6 +35,9 @@ public class TrailViewController {
     private Button btnFilter;
     
     @FXML
+    private Button btnHistory;
+    
+    @FXML
     private ComboBox<String> cbDifficulty;
     
     @FXML
@@ -53,17 +56,20 @@ public class TrailViewController {
     }
 
 	public void search(KeyEvent event) {
+		//uses text box to filter results
 		List<Trail> trailList = trailStorage.search(tfSearch.getText());
 		obsTrailList = FXCollections.observableList(trailList);
 		lvTrails.setItems(obsTrailList);
 	}
 	
 	public void filter(ActionEvent event) {
-		if(tfSearch == null) {
+		//uses combo boxes to filter results
+		if(tfSearch.getText() == null) {
 			if(cbDifficulty.getValue()!= null && !cbDifficulty.getValue().equals("Filter by Difficulty") && cbType.getValue() != null && !cbType.getValue().equals("Filter by Type")) {
 				//something selected in both boxes
 				trailList = trailStorage.search(cbDifficulty.getValue());
 				trailList = trailList.stream()
+				.filter(x -> x.isEnabled())
 				.filter(x -> x.typeString().contains(cbType.getValue()))
 				.collect(Collectors.toList());
 			} else if(cbDifficulty.getValue() == null || cbDifficulty.getValue().equals("Filter by Difficulty")) {
@@ -82,17 +88,20 @@ public class TrailViewController {
 			if(cbDifficulty.getValue()!= null && !cbDifficulty.getValue().equals("Filter by Difficulty") && cbType.getValue() != null && !cbType.getValue().equals("Filter by Type")) {
 				//something selected in both boxes
 				trailList = trailList.stream()
+				.filter(x -> x.isEnabled())
 				.filter(x -> x.difficultyString().contains(cbDifficulty.getValue()) 
 				&& x.typeString().contains(cbType.getValue()))
 				.collect(Collectors.toList());
 			} else if(cbDifficulty.getValue() == null || cbDifficulty.getValue().equals("Filter by Difficulty")) {
 				//nothing selected in difficulty box
 				trailList = trailList.stream()
+				.filter(x -> x.isEnabled())
 				.filter(x -> x.typeString().contains(cbType.getValue()))
 				.collect(Collectors.toList());
 			} else if(cbType.getValue() == null || cbType.getValue().equals("Filter by Type")) {
 				//nothing selected in type box
 				trailList = trailList.stream()
+				.filter(x -> x.isEnabled())
 				.filter(x -> x.difficultyString().contains(cbDifficulty.getValue()))
 				.collect(Collectors.toList());
 			} else {

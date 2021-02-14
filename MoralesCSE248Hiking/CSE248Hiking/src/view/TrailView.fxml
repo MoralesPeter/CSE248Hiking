@@ -4,15 +4,31 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrailViewController">
    <children>
-      <ListView fx:id="lvTrails" layoutX="16.0" layoutY="60.0" prefHeight="263.0" prefWidth="568.0" />
-      <TextField fx:id="tfSearch" layoutX="16.0" layoutY="26.0" onKeyTyped="#search" prefHeight="25.0" prefWidth="568.0" />
-      <Button fx:id="btnRecordHike" layoutX="16.0" layoutY="369.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="568.0" text="Record Hike" />
-      <ComboBox fx:id="cbDifficulty" layoutX="16.0" layoutY="333.0" prefHeight="25.0" prefWidth="223.0" promptText="Filter by Difficulty" />
-      <ComboBox fx:id="cbType" layoutX="247.0" layoutY="333.0" prefHeight="25.0" prefWidth="223.0" promptText="Filter by Type" />
-      <Button fx:id="btnFilter" layoutX="480.0" layoutY="333.0" mnemonicParsing="false" onAction="#filter" prefHeight="25.0" prefWidth="104.0" text="Filter Results" />
+      <AnchorPane prefHeight="81.0" prefWidth="600.0" style="-fx-background-color: #cccccc;">
+         <children>
+            <TextField fx:id="tfSearch" layoutX="16.0" layoutY="14.0" onKeyTyped="#search" prefHeight="25.0" prefWidth="568.0" promptText="Enter Trail Name, Trailhead, Distance, or Elevation Gain" />
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <ListView fx:id="lvTrails" layoutX="16.0" layoutY="89.0" prefHeight="263.0" prefWidth="568.0" />
+      <Button fx:id="btnRecordHike" layoutX="16.0" layoutY="369.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="568.0" text="Record Hike">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font></Button>
+      <ComboBox fx:id="cbDifficulty" layoutX="16.0" layoutY="46.0" prefHeight="25.0" prefWidth="223.0" promptText="Filter by Difficulty" />
+      <ComboBox fx:id="cbType" layoutX="247.0" layoutY="46.0" prefHeight="25.0" prefWidth="223.0" promptText="Filter by Type" />
+      <Button fx:id="btnFilter" layoutX="480.0" layoutY="46.0" mnemonicParsing="false" onAction="#filter" prefHeight="25.0" prefWidth="104.0" text="Filter Results" />
+      <Button fx:id="btnHistory" layoutX="16.0" layoutY="435.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="568.0" text="View History">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font></Button>
    </children>
 </AnchorPane>

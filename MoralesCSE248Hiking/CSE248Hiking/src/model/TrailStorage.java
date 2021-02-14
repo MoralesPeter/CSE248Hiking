@@ -31,6 +31,7 @@ public class TrailStorage implements Serializable {
 	
 	public List<Trail> search(String input) {
 		List<Trail> list = trailStorage.stream()
+		.filter(x -> x.isEnabled())
 		.filter(x -> x.getName().contains(input) || x.getTrailHead().contains(input)
 		|| x.lengthString().contains(input) || x.elevationGainString().contains(input)
 		|| x.difficultyString().contains(input) || x.typeString().contains(input))

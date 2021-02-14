@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RecordHikeController">
+   <children>
+      <Label layoutX="13.0" layoutY="106.0" prefHeight="25.0" prefWidth="103.0" text="Date Started:" />
+      <Label layoutX="345.0" layoutY="106.0" prefHeight="25.0" prefWidth="103.0" text="Time Started:" />
+      <Label layoutX="14.0" layoutY="197.0" prefHeight="25.0" prefWidth="103.0" text="Distance Hiked:" />
+      <TextField fx:id="tfDuration" layoutX="122.0" layoutY="250.0" prefHeight="25.0" prefWidth="396.0" />
+      <Label layoutX="13.0" layoutY="250.0" prefHeight="25.0" prefWidth="103.0" text="Duration:" />
+      <TextField fx:id="tfImagePaths" editable="false" layoutX="122.0" layoutY="306.0" prefHeight="25.0" prefWidth="354.0" />
+      <Label layoutX="13.0" layoutY="306.0" prefHeight="25.0" prefWidth="103.0" text="Images:" />
+      <DatePicker fx:id="dpDateStarted" layoutX="122.0" layoutY="106.0" prefHeight="25.0" prefWidth="214.0" />
+      <TextField fx:id="tfStartHours" layoutX="436.0" layoutY="106.0" prefHeight="25.0" prefWidth="35.0" promptText="12" />
+      <TextField fx:id="tfStartMins" layoutX="482.0" layoutY="106.0" prefHeight="25.0" prefWidth="35.0" promptText="00" />
+      <Label layoutX="475.0" layoutY="110.0" text=":" />
+      <ComboBox fx:id="cbStartAMPM" layoutX="524.0" layoutY="106.0" prefHeight="25.0" prefWidth="62.0" promptText="AM" />
+      <Label layoutX="13.0" layoutY="145.0" prefHeight="25.0" prefWidth="103.0" text="Date Finished:" />
+      <Label layoutX="345.0" layoutY="145.0" prefHeight="25.0" prefWidth="103.0" text="Time Finished:" />
+      <DatePicker fx:id="dpDateFinished" layoutX="122.0" layoutY="145.0" prefHeight="25.0" prefWidth="214.0" />
+      <TextField fx:id="tfFinishHours" layoutX="436.0" layoutY="145.0" prefHeight="25.0" prefWidth="35.0" promptText="12" />
+      <TextField fx:id="tfFinishMins" layoutX="482.0" layoutY="145.0" prefHeight="25.0" prefWidth="35.0" promptText="00" />
+      <Label layoutX="475.0" layoutY="149.0" text=":" />
+      <ComboBox fx:id="cbFinishAMPM" layoutX="524.0" layoutY="145.0" prefHeight="25.0" prefWidth="62.0" promptText="AM" />
+      <Button fx:id="btnChooseFiles" layoutX="485.0" layoutY="306.0" mnemonicParsing="false" onAction="#fileChooser" prefHeight="25.0" prefWidth="103.0" text="Choose Files" />
+      <Button fx:id="btnSaveHike" layoutX="13.0" layoutY="369.0" mnemonicParsing="false" onAction="#saveHike" prefHeight="76.0" prefWidth="575.0" text="Save Hike">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="-1.0" prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: #cccccc;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Label fx:id="lblTrailName" alignment="CENTER" layoutX="16.0" layoutY="5.0" prefHeight="63.0" prefWidth="575.0" text="Trail Name" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="44.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnEditTrail" layoutX="270.0" layoutY="461.0" mnemonicParsing="false" text="Edit Trail" visible="false" />
+      <Label fx:id="lblError" alignment="CENTER" layoutX="14.0" layoutY="343.0" prefHeight="17.0" prefWidth="575.0" textFill="RED" />
+      <Label layoutX="523.0" layoutY="197.0" prefHeight="25.0" prefWidth="62.0" text="Miles" />
+      <Label layoutX="523.0" layoutY="250.0" prefHeight="25.0" prefWidth="62.0" text="Minutes" />
+      <TextField fx:id="tfDistanceHiked" layoutX="122.0" layoutY="197.0" prefHeight="25.0" prefWidth="396.0" />
+   </children>
+</AnchorPane>

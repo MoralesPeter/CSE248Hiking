@@ -1,12 +1,13 @@
 package app;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import model.Admin;
+import model.Hiker;
 import model.Trail;
 import model.TrailStorage;
-import model.User;
 import model.UserStorage;
 
 public class test {
@@ -19,6 +20,7 @@ public class test {
 		Trail t4 = new Trail("name4", "trailhead3", 10, 40, 2, 2);
 		Trail t5 = new Trail("name5", "trailhead3", 10, 40, 1, 1);
 		Trail t6 = new Trail("name6", "trailhead4", 10, 40, 0, 2);
+		Trail t7 = new Trail("mountain", "some place", 100, 40, 2, 1);
 		TrailStorage theStorage = new TrailStorage();
 		theStorage.addTrail(t0);
 		theStorage.addTrail(t1);
@@ -27,14 +29,17 @@ public class test {
 		theStorage.addTrail(t4);
 		theStorage.addTrail(t5);
 		theStorage.addTrail(t6);
+		theStorage.addTrail(t7);
 		theStorage.save();
 		System.out.println(theStorage.search("2"));
 		
 		
 		UserStorage userStorage = new UserStorage();
-		User u = new User("user", "a", "John", "Doe", 5558675309L, "user.jpg");
-		Admin a = new Admin("admin", "b", "Jane", "Doe", 5558675309L, "user.jpg");
-		userStorage.addUser("user", u);
+		File defaultImage = new File("default-user.png");
+		Hiker h = new Hiker("user", "a", "John", "Doe", 5558675309L, defaultImage);
+		Admin a = new Admin("admin", "b", "Jane", "Doe", 5558675309L, defaultImage);
+		userStorage.addUser("user", h);
+		userStorage.addUser("admin", a);
 		userStorage.save();
 		
 	}

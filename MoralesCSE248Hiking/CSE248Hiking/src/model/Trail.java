@@ -15,6 +15,7 @@ public class Trail implements Serializable, Comparable<Trail> {
 	private double elevationGain;
 	private int difficulty; //0=easy, 1=moderate, 2=hard
 	private int type; //0=loop, 1=out and back, 2=point-to-point
+	private boolean isEnabled;
 	
 	public Trail(String name, String trailHead, double length, double elevationGain, int difficulty, int type) {
 		this.name = name;
@@ -23,6 +24,7 @@ public class Trail implements Serializable, Comparable<Trail> {
 		this.elevationGain = elevationGain;
 		this.difficulty = difficulty;
 		this.type = type;
+		this.setEnabled(true);
 	}
 	
 	public String getName() {
@@ -114,5 +116,13 @@ public class Trail implements Serializable, Comparable<Trail> {
 		} else {
 			return 0;
 		}
+	}
+
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
 	}
 }

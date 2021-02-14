@@ -31,7 +31,6 @@ public class LogInController {
     @FXML
     private Button btnCreateUser;
     
-    @FXML
     public void authenticate(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
     	userStorage.initialize();
     	if(tfUsername.getText() == null || tfPassword.getText() == null) {

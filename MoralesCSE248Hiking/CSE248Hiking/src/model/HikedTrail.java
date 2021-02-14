@@ -1,7 +1,8 @@
 package model;
 
+import java.io.File;
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.List;
 
 public class HikedTrail implements Serializable {
 	
@@ -12,13 +13,24 @@ public class HikedTrail implements Serializable {
 	
 	private Trail t;
 	private String dateStart;
+	private String timeStart;
 	private String dateFinish;
+	private String timeFinish;
 	private double distanceHiked;
 	private double duration;
-	private LinkedList<String> imagePaths = new LinkedList<>();
+	private List<File> images;
 	private double averagePace; //mins / miles
 	
-	public HikedTrail(Trail t, String dateStart, String dateFinish, double distanceHiked, double duration, LinkedList<String> imagePaths, double averagePace) {
+	public HikedTrail(Trail t, String dateStart, String timeStart, String dateFinish, String timeFinish, 
+			double distanceHiked, double duration, List<File> images, double averagePace) {
+		this.t = t;
+		this.dateStart = dateStart;
+		this.timeStart = timeStart;
+		this.dateFinish = dateFinish;
+		this.timeFinish = timeFinish;
+		this.distanceHiked = distanceHiked;
+		this.duration = duration;
+		this.images = images;
 		this.averagePace = duration / t.getLength();
 	}
 	
@@ -33,9 +45,17 @@ public class HikedTrail implements Serializable {
 	public String getDateStart() {
 		return dateStart;
 	}
-
+	
 	public void setDateStart(String dateStart) {
 		this.dateStart = dateStart;
+	}
+	
+	public String getTimeStart() {
+		return timeStart;
+	}
+	
+	public void setTimeStart(String timeStart) {
+		this.timeStart = timeStart;
 	}
 
 	public String getDateFinish() {
@@ -45,7 +65,15 @@ public class HikedTrail implements Serializable {
 	public void setDateFinish(String dateFinish) {
 		this.dateFinish = dateFinish;
 	}
-
+	
+	public String getTimeFinish() {
+		return timeFinish;
+	}
+	
+	public void setTimeFinish(String timeFinish) {
+		this.timeFinish = timeFinish;
+	}
+	
 	public double getDistanceHiked() {
 		return distanceHiked;
 	}
@@ -62,12 +90,8 @@ public class HikedTrail implements Serializable {
 		this.duration = duration;
 	}
 
-	public LinkedList<String> getImagePaths() {
-		return imagePaths;
-	}
-
-	public void setImagePaths(LinkedList<String> imagePaths) {
-		this.imagePaths = imagePaths;
+	public List<File> getImages() {
+		return images;
 	}
 
 	public double getAveragePace() {

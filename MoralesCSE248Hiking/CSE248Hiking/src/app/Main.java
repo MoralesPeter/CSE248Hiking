@@ -13,7 +13,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		URL url = getClass().getClassLoader().getResource("view/TrailView.fxml");
+		URL url = getClass().getClassLoader().getResource("view/RecordHike.fxml");
 		Parent root = FXMLLoader.load(url);
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("Log In");

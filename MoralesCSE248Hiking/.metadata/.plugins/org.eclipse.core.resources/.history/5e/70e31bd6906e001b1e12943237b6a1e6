@@ -1,0 +1,76 @@
+package controller;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import app.Main;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import model.Admin;
+import model.User;
+import model.UserStorage;
+
+public class RecordHikeController {
+	
+	private UserStorage userStorage = new UserStorage();
+	
+    @FXML
+    private TextField tfDuration;
+
+    @FXML
+    private TextField tfImagePaths;
+
+    @FXML
+    private PasswordField tfDistanceHiked;
+
+    @FXML
+    private DatePicker dpDateStarted;
+
+    @FXML
+    private TextField tfStartHours;
+
+    @FXML
+    private TextField tfStartMins;
+
+    @FXML
+    private ComboBox<String> cbStartAMPM;
+
+    @FXML
+    private DatePicker dpDateFinished;
+
+    @FXML
+    private TextField tfFinishHours;
+
+    @FXML
+    private TextField tfFinishMins;
+
+    @FXML
+    private ComboBox<String> cbFinishAMPM;
+
+    @FXML
+    private Button btnChooseFiles;
+
+    @FXML
+    private Button btnSaveHike;
+
+    @FXML
+    private Label lblTrailName;
+
+    @FXML
+    private Button btnEditTrail;
+    
+    public void initialize() throws FileNotFoundException, ClassNotFoundException, IOException {
+    	userStorage.initialize();
+    	if(Main.loggedIn != null) {
+    		User u = userStorage.searchUser(Main.loggedIn);
+    		if(u instanceof Admin) {
+    			btnEditTrail.setVisible(true);
+    		}
+    	}
+    }
+}

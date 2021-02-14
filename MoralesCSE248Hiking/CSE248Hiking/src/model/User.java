@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -14,17 +15,17 @@ public class User implements Serializable {
 	private String firstName;
 	private String lastName;
 	private long phoneNumber;
-	private String imagePath;
+	private File image;
 	private boolean isActive;
 	private HikingHistory hikingHistory = new HikingHistory();
 	
-	public User(String username, String password, String firstName, String lastName, long phoneNumber, String imagePath) {
+	public User(String username, String password, String firstName, String lastName, long phoneNumber, File image) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
-		this.imagePath = imagePath;
+		this.image = image;
 		this.setActive(true);
 	}
 
@@ -64,12 +65,12 @@ public class User implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getImagePath() {
-		return imagePath;
+	public File getImage() {
+		return image;
 	}
 
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setImage(File image) {
+		this.image = image;
 	}
 	
 	public boolean isActive() {

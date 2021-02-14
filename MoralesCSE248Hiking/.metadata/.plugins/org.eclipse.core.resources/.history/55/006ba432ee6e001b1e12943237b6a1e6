@@ -1,0 +1,143 @@
+package controller;
+
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import app.Main;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import model.Admin;
+import model.User;
+import model.UserStorage;
+
+public class RecordHikeController {
+	
+	private UserStorage userStorage = new UserStorage();
+	private Desktop desktop = Desktop.getDesktop();
+	
+    @FXML
+    private TextField tfDuration;
+
+    @FXML
+    private TextField tfImagePaths;
+
+    @FXML
+    private TextField tfDistanceHiked;
+
+    @FXML
+    private DatePicker dpDateStarted;
+
+    @FXML
+    private TextField tfStartHours;
+
+    @FXML
+    private TextField tfStartMins;
+
+    @FXML
+    private ComboBox<String> cbStartAMPM;
+
+    @FXML
+    private DatePicker dpDateFinished;
+
+    @FXML
+    private TextField tfFinishHours;
+
+    @FXML
+    private TextField tfFinishMins;
+
+    @FXML
+    private ComboBox<String> cbFinishAMPM;
+
+    @FXML
+    private Button btnChooseFiles;
+
+    @FXML
+    private Button btnSaveHike;
+
+    @FXML
+    private Label lblTrailName;
+    
+    @FXML
+    private Label lblError;
+    
+    @FXML
+    private Button btnEditTrail;
+    
+    public void initialize() throws FileNotFoundException, ClassNotFoundException, IOException {
+    	userStorage.initialize();
+    	if(Main.loggedIn != null) {
+    		User u = userStorage.searchUser(Main.loggedIn);
+    		if(u instanceof Admin) {
+    			btnEditTrail.setVisible(true);
+    		}
+    	}
+    	cbStartAMPM.getItems().add("AM");
+    	cbStartAMPM.getItems().add("PM");
+    	cbFinishAMPM.getItems().add("AM");
+    	cbFinishAMPM.getItems().add("PM");
+    }
+    
+    public void saveHike(ActionEvent e) {
+    	if(dpDateStarted.getEditor().getText().equals("") || dpDateFinished.getEditor().getText().equals("") || tfStartHours.getText().equals("") || tfStartMins.getText().equals("") || tfFinishHours.getText().equals("") || tfFinishMins.getText().equals("")
+    			|| tfDistanceHiked.getText().equals("") || tfDuration.getText().equals("")) {
+    		lblError.setText("All fields are required.");
+    		return;
+    	}
+    	if(dpDateStarted.getValue().isAfter(dpDateFinished.getValue())) {
+    		lblError.setText("Starting date must be before ending date");
+    		return;
+    	}
+    	if(tfStartHours.getText().length() != 2 || !tfStartHours.getText().matches("^(0?[1-9]|1[0-2])$")) {
+    		lblError.setText("Invalid starting hours");
+    		return;
+    	}
+    	if(tfStartMins.getText().length() != 2 || !tfStartMins.getText().matches("^(0?[0-5][0-9])$")) {
+    		lblError.setText("Invalid starting mins");
+    		return;
+    	}
+    	if(tfFinishHours.getText().length() != 2 || !tfFinishHours.getText().matches("^(0?[1-9]|1[0-2])$")) {
+    		lblError.setText("Invalid ending hours");
+    		return;
+    	}
+    	if(tfFinishMins.getText().length() != 2 || !tfFinishMins.getText().matches("^(0?[0-5][0-9])$")) {
+    		lblError.setText("Invalid ending mins");
+    		return;
+    	}
+    	if(!tfDistanceHiked.getText().matches("\\d+(\\.\\d+)?")) {
+    		lblError.setText("Invalid distance format");
+    		return;
+    	}
+    	if(!tfDuration.getText().matches("\\d+(\\.\\d+)?")) {
+    		lblError.setText("Invalid duration format");
+    		return;
+    	}
+    	lblError.setText("It worked");
+    }
+    
+    public void fileChooser(ActionEvent e) {
+    	Stage stage = (Stage)tfDuration.getScene().getWindow();
+    	FileChooser fileChooser = new FileChooser();
+    	fileChooser.setTitle("Choose an Image");
+    	FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files", "*.jpg", "*.png");
+    	fileChooser.getExtensionFilters().add(extFilter);
+    	List<File> list =
+                fileChooser.showOpenMultipleDialog(stage);
+        tfImagePaths.setText(list.size() + " images chosen");
+    }
+    
+    public void editTrail() {
+    	//opens new window
+    }
+}

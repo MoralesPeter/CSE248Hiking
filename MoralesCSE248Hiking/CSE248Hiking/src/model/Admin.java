@@ -1,22 +1,17 @@
 package model;
 
+import java.io.File;
 import java.io.Serializable;
 
-public class Admin implements Serializable {
+public class Admin extends User implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2990723706639097331L;
-
-	private User user;
 	
-	public Admin(String username, String password, String firstName, String lastName, long phoneNumber, String imagePath) {
-		user = new User(username, password, firstName, lastName, phoneNumber, imagePath);
-	}
-	
-	public User getUser() {
-		return user;
+	public Admin(String username, String password, String firstName, String lastName, long phoneNumber, File image) {
+		super(username, password, firstName, lastName, phoneNumber, image);
 	}
 	
 	public void changePassword(User u, String password) {
@@ -35,7 +30,7 @@ public class Admin implements Serializable {
 		u.setPhoneNumber(phoneNumber);
 	}
 	
-	public void changeImagePath(User u, String imagePath) {
-		u.setImagePath(imagePath);
+	public void changeImagePath(User u, File image) {
+		u.setImage(image);
 	}
 }
