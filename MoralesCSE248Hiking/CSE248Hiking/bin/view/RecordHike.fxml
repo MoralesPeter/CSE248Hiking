@@ -41,17 +41,18 @@
             <DropShadow />
          </effect>
          <children>
-            <Label fx:id="lblTrailName" alignment="CENTER" layoutX="16.0" layoutY="5.0" prefHeight="63.0" prefWidth="575.0" text="Trail Name" textFill="WHITE">
+            <Label fx:id="lblTrailName" alignment="CENTER" layoutX="16.0" layoutY="5.0" prefHeight="63.0" prefWidth="575.0" text="Trail Name">
                <font>
                   <Font name="System Bold" size="44.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="btnEditTrail" layoutX="270.0" layoutY="461.0" mnemonicParsing="false" text="Edit Trail" visible="false" />
+      <Button fx:id="btnEditTrail" layoutX="270.0" layoutY="461.0" mnemonicParsing="false" onAction="#openEditTrails" text="Edit Trail" visible="false" />
       <Label fx:id="lblError" alignment="CENTER" layoutX="14.0" layoutY="343.0" prefHeight="17.0" prefWidth="575.0" textFill="RED" />
       <Label layoutX="523.0" layoutY="197.0" prefHeight="25.0" prefWidth="62.0" text="Miles" />
       <Label layoutX="523.0" layoutY="250.0" prefHeight="25.0" prefWidth="62.0" text="Minutes" />
       <TextField fx:id="tfDistanceHiked" layoutX="122.0" layoutY="197.0" prefHeight="25.0" prefWidth="396.0" />
+      <Button fx:id="btnBack" layoutX="525.0" layoutY="461.0" mnemonicParsing="false" onAction="#openTrailView" text="Go Back" />
    </children>
 </AnchorPane>

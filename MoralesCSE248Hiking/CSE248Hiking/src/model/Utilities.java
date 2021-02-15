@@ -1,5 +1,11 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Utilities {
 	
 	public static boolean authenticateUser(String username, String password, UserStorage userStorage) {
@@ -10,5 +16,30 @@ public class Utilities {
 			}
 		}
 		return false;
+	}
+	
+	public static String emitText(String fileName, int numLines) throws IOException {
+		
+		File file = new File(fileName);
+		String [] array = new String[numLines];
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+	    String line = null;
+	    int i = 0;
+	    while((line = br.readLine())!= null) {
+	    	array[i] = line;
+			i++;
+	    	}
+		
+		//get random string
+		int randIndex = (int)(Math.random() * array.length);
+		
+		br.close();
+		return array[randIndex];
+	}
+	
+	
+	public static double emitDouble(int upperBound, double divisor) {
+		return ((int)(Math.random() * upperBound) / divisor);
 	}
 }

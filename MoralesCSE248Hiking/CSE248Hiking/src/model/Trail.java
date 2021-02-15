@@ -1,6 +1,13 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+
 
 public class Trail implements Serializable, Comparable<Trail> {
 	
@@ -16,6 +23,8 @@ public class Trail implements Serializable, Comparable<Trail> {
 	private int difficulty; //0=easy, 1=moderate, 2=hard
 	private int type; //0=loop, 1=out and back, 2=point-to-point
 	private boolean isEnabled;
+	private static int uniqueNum;
+	private int uniqueID;
 	
 	public Trail(String name, String trailHead, double length, double elevationGain, int difficulty, int type) {
 		this.name = name;
@@ -25,6 +34,28 @@ public class Trail implements Serializable, Comparable<Trail> {
 		this.difficulty = difficulty;
 		this.type = type;
 		this.setEnabled(true);
+		try {
+			this.uniqueID = generateUniqueID();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Trail(String name, String trailHead, double length, double elevationGain, int difficulty, int type, boolean isEnabled) {
+		this.name = name;
+		this.trailHead = trailHead;
+		this.length = length;
+		this.elevationGain = elevationGain;
+		this.difficulty = difficulty;
+		this.type = type;
+		this.isEnabled = isEnabled;
+		try {
+			this.uniqueID = generateUniqueID();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String getName() {
@@ -103,8 +134,17 @@ public class Trail implements Serializable, Comparable<Trail> {
 		}
 	}
 	
+	public int generateUniqueID() throws ClassNotFoundException, IOException {
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("UniqueNum.dat")));
+		uniqueNum = (int) ois.readObject();
+		uniqueNum++;
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("UniqueNum.dat")));
+		oos.writeObject(uniqueNum);
+		return uniqueNum;
+	}
+	
 	public String toString() {
-		return "Name: " + name + " Trailhead: " + trailHead + " Length: " + Double.toString(length) + " Elevation Gain: " + Double.toString(elevationGain) + " Difficulty: " + difficultyString() + " Type: " + typeString();
+		return "Name: " + name + ", Trailhead: " + trailHead + ", Length: " + Double.toString(length) + " miles, Elevation Gain: " + Double.toString(elevationGain) + " feet, Difficulty: " + difficultyString() + ", Type: " + typeString();
 	}
 
 	@Override
@@ -124,5 +164,9 @@ public class Trail implements Serializable, Comparable<Trail> {
 
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
+	}
+
+	public int getUniqueID() {
+		return uniqueID;
 	}
 }

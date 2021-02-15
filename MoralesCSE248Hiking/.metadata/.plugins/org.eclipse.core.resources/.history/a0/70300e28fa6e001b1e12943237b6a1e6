@@ -1,0 +1,19 @@
+package controller;
+
+import app.Main;
+import javafx.fxml.FXML;
+import javafx.scene.layout.TilePane;
+import model.HikedTrail;
+
+public class HikingPicturesController {
+	
+	private HikedTrail hikedTrail;
+	
+    @FXML
+    private TilePane tpImages;
+    
+    public void initialize() {
+    	hikedTrail = Main.selectedHike;
+    	
+    }
+}

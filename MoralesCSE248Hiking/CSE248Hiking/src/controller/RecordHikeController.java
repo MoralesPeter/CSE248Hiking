@@ -3,11 +3,15 @@ package controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import app.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -16,13 +20,18 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Admin;
+import model.HikedTrail;
+import model.HikingHistory;
+import model.Trail;
 import model.User;
 import model.UserStorage;
 
 public class RecordHikeController {
 	
 	private UserStorage userStorage = new UserStorage();
+	private User u;
 	private List<File> list = null;
+	private Trail t;
 	
     @FXML
     private TextField tfDuration;
@@ -62,7 +71,10 @@ public class RecordHikeController {
 
     @FXML
     private Button btnSaveHike;
-
+    
+    @FXML
+    private Button btnBack;
+    
     @FXML
     private Label lblTrailName;
     
@@ -74,7 +86,9 @@ public class RecordHikeController {
     
     public void initialize() throws FileNotFoundException, ClassNotFoundException, IOException {
     	userStorage.initialize();
-    	User u = userStorage.searchUser(Main.loggedIn);
+    	u = userStorage.searchUser(Main.loggedIn);
+    	t = Main.selectedTrail;
+    	lblTrailName.setText(t.getName());
     	if(u instanceof Admin) {
 			btnEditTrail.setVisible(true);
 		}
@@ -82,9 +96,11 @@ public class RecordHikeController {
     	cbStartAMPM.getItems().add("PM");
     	cbFinishAMPM.getItems().add("AM");
     	cbFinishAMPM.getItems().add("PM");
+    	cbStartAMPM.getSelectionModel().select(0);
+    	cbFinishAMPM.getSelectionModel().select(0);
     }
     
-    public void saveHike(ActionEvent e) {
+    public void saveHike(ActionEvent e) throws FileNotFoundException, IOException {
     	if(dpDateStarted.getEditor().getText().equals("") || dpDateFinished.getEditor().getText().equals("") || tfStartHours.getText().equals("") || tfStartMins.getText().equals("") || tfFinishHours.getText().equals("") || tfFinishMins.getText().equals("")
     			|| tfDistanceHiked.getText().equals("") || tfDuration.getText().equals("")) {
     		lblError.setText("All fields are required.");
@@ -118,7 +134,18 @@ public class RecordHikeController {
     		lblError.setText("Invalid duration format");
     		return;
     	}
-    	lblError.setText("It worked");
+    	String dateStart = dpDateStarted.getEditor().getText();
+    	String timeStart = tfStartHours.getText() + ":" + tfStartMins.getText() + " " + cbStartAMPM.getSelectionModel().getSelectedItem();
+    	String dateFinish = dpDateFinished.getEditor().getText();
+    	String timeFinish = tfFinishHours.getText() + ":" + tfFinishHours.getText() + " " + cbFinishAMPM.getSelectionModel().getSelectedItem();
+    	double distanceHiked = Double.parseDouble(tfDistanceHiked.getText());
+    	double duration = Double.parseDouble(tfDuration.getText());
+    	HikingHistory hikingHistory = u.getHikingHistory();
+    	HikedTrail hikedTrail = new HikedTrail(t, dateStart, timeStart, dateFinish, timeFinish, distanceHiked, duration, list);
+		hikingHistory.addTrail(hikedTrail);
+		u.setHikingHistory(hikingHistory);
+		userStorage.save();
+		openTrailView();
     }
     
     public void fileChooser(ActionEvent e) {
@@ -131,7 +158,60 @@ public class RecordHikeController {
         tfImagePaths.setText(list.size() + " images chosen");
     }
     
-    public void editTrail() {
-    	//opens new window
+    public void openEditTrails() {
+    	//close record hike window, open edit trails window
+    	Stage primaryStage = (Stage)dpDateStarted.getScene().getWindow();
+    	
+    	try {
+    		URL url = getClass().getClassLoader().getResource("view/EditTrails.fxml");
+    		Parent root = FXMLLoader.load(url);
+    		Scene scene = new Scene(root);
+    		Stage stage = new Stage();
+    		stage.setTitle("Edit Trails");
+    		stage.setScene(scene);
+    		stage.show();
+    	    primaryStage.close();
+
+    	} catch (IOException ex) {
+    	    ex.printStackTrace();
+    	}
+    }
+    
+    public void openTrailView() {
+    	//close record hike window, open trail view window
+    	Stage primaryStage = (Stage)dpDateStarted.getScene().getWindow();
+    	
+    	try {
+    		URL url = getClass().getClassLoader().getResource("view/TrailView.fxml");
+    		Parent root = FXMLLoader.load(url);
+    		Scene scene = new Scene(root);
+    		Stage stage = new Stage();
+    		stage.setTitle("Trails");
+    		stage.setScene(scene);
+    		stage.show();
+    	    primaryStage.close();
+
+    	} catch (IOException ex) {
+    	    ex.printStackTrace();
+    	}
+    }
+    
+    public void openTrailView(ActionEvent e) {
+    	//close record hike window, open trail view window
+    	Stage primaryStage = (Stage)dpDateStarted.getScene().getWindow();
+    	
+    	try {
+    		URL url = getClass().getClassLoader().getResource("view/TrailView.fxml");
+    		Parent root = FXMLLoader.load(url);
+    		Scene scene = new Scene(root);
+    		Stage stage = new Stage();
+    		stage.setTitle("Trails");
+    		stage.setScene(scene);
+    		stage.show();
+    	    primaryStage.close();
+
+    	} catch (IOException ex) {
+    	    ex.printStackTrace();
+    	}
     }
 }

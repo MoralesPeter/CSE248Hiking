@@ -18,17 +18,22 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <ListView fx:id="lvTrails" layoutX="16.0" layoutY="89.0" prefHeight="263.0" prefWidth="568.0" />
-      <Button fx:id="btnRecordHike" layoutX="16.0" layoutY="369.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="568.0" text="Record Hike">
+      <ListView fx:id="lvTrails" layoutX="16.0" layoutY="89.0" prefHeight="203.0" prefWidth="568.0" />
+      <Button fx:id="btnRecordHike" layoutX="14.0" layoutY="300.0" mnemonicParsing="false" onAction="#openRecordHike" prefHeight="58.0" prefWidth="568.0" text="Record Hike">
          <font>
             <Font name="System Bold" size="26.0" />
          </font></Button>
       <ComboBox fx:id="cbDifficulty" layoutX="16.0" layoutY="46.0" prefHeight="25.0" prefWidth="223.0" promptText="Filter by Difficulty" />
       <ComboBox fx:id="cbType" layoutX="247.0" layoutY="46.0" prefHeight="25.0" prefWidth="223.0" promptText="Filter by Type" />
       <Button fx:id="btnFilter" layoutX="480.0" layoutY="46.0" mnemonicParsing="false" onAction="#filter" prefHeight="25.0" prefWidth="104.0" text="Filter Results" />
-      <Button fx:id="btnHistory" layoutX="16.0" layoutY="435.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="568.0" text="View History">
+      <Button fx:id="btnHistory" layoutX="14.0" layoutY="367.0" mnemonicParsing="false" onAction="#openHistoryView" prefHeight="58.0" prefWidth="568.0" text="View History">
          <font>
             <Font name="System Bold" size="26.0" />
          </font></Button>
+      <Button fx:id="btnEditUser" layoutX="16.0" layoutY="435.0" mnemonicParsing="false" onAction="#openEditUser" prefHeight="58.0" prefWidth="568.0" text="Edit User">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -2,18 +2,24 @@ package controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import app.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import model.Trail;
 import model.TrailStorage;
 
@@ -53,6 +59,8 @@ public class TrailViewController {
     	cbType.getItems().add("Loop");
     	cbType.getItems().add("Out and back");
     	cbType.getItems().add("Point-to-point");
+    	cbDifficulty.getSelectionModel().select(0);
+    	cbType.getSelectionModel().select(0);
     }
 
 	public void search(KeyEvent event) {
@@ -110,5 +118,66 @@ public class TrailViewController {
 			obsTrailList = FXCollections.observableList(trailList);
 			lvTrails.setItems(obsTrailList);
 		}
+	}
+	
+	public void openRecordHike(ActionEvent e) {
+		//close trail view window, open record hike window
+    	Stage primaryStage = (Stage)lvTrails.getScene().getWindow();
+    	if(lvTrails.getSelectionModel().getSelectedItem() == null) {
+    		return;	
+    	}
+    	Main.selectedTrail = lvTrails.getSelectionModel().getSelectedItem();
+    	Main.selectedTrailID = lvTrails.getSelectionModel().getSelectedItem().getUniqueID();
+    	try {
+    		URL url = getClass().getClassLoader().getResource("view/RecordHike.fxml");
+    		Parent root = FXMLLoader.load(url);
+    		Scene scene = new Scene(root);
+    		Stage stage = new Stage();
+    		stage.setTitle("Record a Hike");
+    		stage.setScene(scene);
+    		stage.show();
+    	    primaryStage.close();
+
+    	} catch (IOException ex) {
+    	    ex.printStackTrace();
+    	}
+	}
+	
+	public void openHistoryView(ActionEvent e) {
+		//close trail view window, open record hike window
+    	Stage primaryStage = (Stage)lvTrails.getScene().getWindow();
+    	
+    	try {
+    		URL url = getClass().getClassLoader().getResource("view/HistoryView.fxml");
+    		Parent root = FXMLLoader.load(url);
+    		Scene scene = new Scene(root);
+    		Stage stage = new Stage();
+    		stage.setTitle("Hiking History");
+    		stage.setScene(scene);
+    		stage.show();
+    	    primaryStage.close();
+
+    	} catch (IOException ex) {
+    	    ex.printStackTrace();
+    	}
+	}
+	
+	public void openEditUser(ActionEvent e) {
+		//close trail view window, open record hike window
+    	Stage primaryStage = (Stage)lvTrails.getScene().getWindow();
+    	
+    	try {
+    		URL url = getClass().getClassLoader().getResource("view/EditUser.fxml");
+    		Parent root = FXMLLoader.load(url);
+    		Scene scene = new Scene(root);
+    		Stage stage = new Stage();
+    		stage.setTitle("Edit User");
+    		stage.setScene(scene);
+    		stage.show();
+    	    primaryStage.close();
+
+    	} catch (IOException ex) {
+    	    ex.printStackTrace();
+    	}
 	}
 }

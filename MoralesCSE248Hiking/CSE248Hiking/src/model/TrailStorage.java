@@ -8,7 +8,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,18 +20,29 @@ public class TrailStorage implements Serializable {
 	 */
 	private static final long serialVersionUID = 226044182497471384L;
 	
-	private HashSet<Trail> trailStorage = new HashSet<>(50000);
+	
+	private HashMap<Integer, Trail> trailStorage = new HashMap<>(50000);
 	
 	public TrailStorage() {
 		
 	}
 	
 	public void addTrail(Trail t) {
-		trailStorage.add(t);
+		trailStorage.put(t.getUniqueID(), t);
 	}
 	
+	public Trail deleteTrail(int i) {
+		return trailStorage.remove(i);
+	}
+	
+	public Trail getTrail(int i) {
+		return trailStorage.get(i);
+	}
+	
+	
 	public List<Trail> search(String input) {
-		List<Trail> list = trailStorage.stream()
+		Collection<Trail> trails = trailStorage.values();
+		List<Trail> list = trails.stream()
 		.filter(x -> x.isEnabled())
 		.filter(x -> x.getName().contains(input) || x.getTrailHead().contains(input)
 		|| x.lengthString().contains(input) || x.elevationGainString().contains(input)
@@ -43,7 +55,7 @@ public class TrailStorage implements Serializable {
 	@SuppressWarnings("unchecked")
 	public void initialize() throws FileNotFoundException, IOException, ClassNotFoundException {
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("TrailStorage.dat")));
-		trailStorage = (HashSet<Trail>) ois.readObject();
+		trailStorage = (HashMap<Integer, Trail>) ois.readObject();
 	}
 	
 	public void save() throws FileNotFoundException, IOException {

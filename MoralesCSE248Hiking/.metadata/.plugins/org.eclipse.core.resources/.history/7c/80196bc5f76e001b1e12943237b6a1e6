@@ -1,0 +1,104 @@
+package model;
+
+import java.io.File;
+import java.io.Serializable;
+import java.util.List;
+
+public class HikedTrail implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7408196588410411737L;
+	
+	private Trail t;
+	private String dateStart;
+	private String timeStart;
+	private String dateFinish;
+	private String timeFinish;
+	private double distanceHiked;
+	private double duration;
+	private List<File> images;
+	private double averagePace; //mins / miles
+	
+	public HikedTrail(Trail t, String dateStart, String timeStart, String dateFinish, String timeFinish, 
+			double distanceHiked, double duration, List<File> images) {
+		this.t = t;
+		this.dateStart = dateStart;
+		this.timeStart = timeStart;
+		this.dateFinish = dateFinish;
+		this.timeFinish = timeFinish;
+		this.distanceHiked = distanceHiked;
+		this.duration = duration;
+		this.images = images;
+		this.averagePace = duration / t.getLength();
+	}
+	
+	public Trail getT() {
+		return t;
+	}
+
+	public void setT(Trail t) {
+		this.t = t;
+	}
+
+	public String getDateStart() {
+		return dateStart;
+	}
+	
+	public void setDateStart(String dateStart) {
+		this.dateStart = dateStart;
+	}
+	
+	public String getTimeStart() {
+		return timeStart;
+	}
+	
+	public void setTimeStart(String timeStart) {
+		this.timeStart = timeStart;
+	}
+
+	public String getDateFinish() {
+		return dateFinish;
+	}
+
+	public void setDateFinish(String dateFinish) {
+		this.dateFinish = dateFinish;
+	}
+	
+	public String getTimeFinish() {
+		return timeFinish;
+	}
+	
+	public void setTimeFinish(String timeFinish) {
+		this.timeFinish = timeFinish;
+	}
+	
+	public double getDistanceHiked() {
+		return distanceHiked;
+	}
+
+	public void setDistanceHiked(double distanceHiked) {
+		this.distanceHiked = distanceHiked;
+	}
+
+	public double getDuration() {
+		return duration;
+	}
+
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
+
+	public List<File> getImages() {
+		return images;
+	}
+
+	public double getAveragePace() {
+		return averagePace;
+	}
+	
+	public String toString() {
+		return this.timeStart + " " + this.dateStart + " - " + this.timeFinish + " " + this.dateFinish + ", Distance: " + this.distanceHiked + " miles, Duration: " + this.duration + " mins, Avg. Pace: " + this.averagePace;
+	}
+}

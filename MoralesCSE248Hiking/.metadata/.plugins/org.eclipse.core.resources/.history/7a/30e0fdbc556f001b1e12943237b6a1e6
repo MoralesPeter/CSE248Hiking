@@ -1,0 +1,48 @@
+package controller;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+
+public class EditTrailsController {
+
+    @FXML
+    private TextField tfName;
+
+    @FXML
+    private TextField tfTrailHead;
+
+    @FXML
+    private TextField tfLength;
+
+    @FXML
+    private TextField tfElevationGain;
+
+    @FXML
+    private ComboBox<String> cbDifficulty;
+
+    @FXML
+    private ComboBox<String> cbType;
+
+    @FXML
+    private Button btnSaveTrail;
+
+    @FXML
+    private Button btnCreateTrail;
+
+    @FXML
+    private Button btnBack;
+
+    @FXML
+    void createTrail(ActionEvent event) {
+
+    }
+
+    @FXML
+    void saveTrail(ActionEvent event) {
+
+    }
+
+}

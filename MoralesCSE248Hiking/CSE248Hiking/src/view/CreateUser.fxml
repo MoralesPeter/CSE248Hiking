@@ -10,8 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="controller.CreateUserController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateUserController">
    <children>
       <TextField fx:id="tfUsername" layoutX="123.0" layoutY="14.0" prefHeight="25.0" prefWidth="464.0" />
       <PasswordField fx:id="tfPassword" layoutX="123.0" layoutY="45.0" prefHeight="25.0" prefWidth="464.0" />

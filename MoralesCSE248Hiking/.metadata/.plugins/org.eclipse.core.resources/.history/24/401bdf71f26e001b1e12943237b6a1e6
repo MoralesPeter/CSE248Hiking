@@ -1,0 +1,19 @@
+package controller;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import model.HikedTrail;
+import model.UserStorage;
+
+public class HistoryViewController {
+	
+	private UserStorage userStorage = new UserStorage();
+	
+    @FXML
+    private ListView<HikedTrail> lvHistory;
+    
+    
+    private void initialize() {
+    	
+    }
+}

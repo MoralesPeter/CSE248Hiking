@@ -1,0 +1,5 @@
+For user storage I used a TreeMap with the key being the username. This is because TreeMap has fast searching and insertion and there is no limit to the number of users that can be stored in a TreeMap. The key is the username since that needs to be unique to each user.
+
+For history I used a LinkedList and specifically inserted history data using the push method. This is so the history is always in first in-last out order, meaning that the most recent hike history will always appear as the first element in the list. There is no searching required for hiking history so it there is no advantage to using a Tree or a Hashtable for this situation.
+
+For trails I used a HashMap with a maximum capacity of 50,000 trails. The key I used in the HashMap is a unique identifying integer that is generated as trails are created. This data structure is the best for this scenario because trails require very fast searching using the search bar. The search bar also uses Streams to filter results based on the text in the search bar. Since there is an upper limit to the number of elements, a HashMap is better than a TreeMap in this case. 

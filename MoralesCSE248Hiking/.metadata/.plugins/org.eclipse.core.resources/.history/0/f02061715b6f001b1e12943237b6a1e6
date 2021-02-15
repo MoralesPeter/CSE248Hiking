@@ -1,0 +1,76 @@
+package controller;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import app.Main;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import model.Trail;
+import model.TrailStorage;
+
+public class EditTrailsController {
+	
+	private Trail t;
+	private TrailStorage trailStorage = new TrailStorage();
+	
+    @FXML
+    private TextField tfName;
+
+    @FXML
+    private TextField tfTrailHead;
+
+    @FXML
+    private TextField tfLength;
+
+    @FXML
+    private TextField tfElevationGain;
+
+    @FXML
+    private ComboBox<String> cbDifficulty;
+
+    @FXML
+    private ComboBox<String> cbType;
+
+    @FXML
+    private Button btnSaveTrail;
+
+    @FXML
+    private Button btnCreateTrail;
+
+    @FXML
+    private Button btnBack;
+    
+    @FXML
+    private CheckBox cbIsEnabled;
+    
+    public void initialize() throws FileNotFoundException, ClassNotFoundException, IOException {
+    	trailStorage.initialize();
+    	t = Main.selectedTrail;
+    	cbDifficulty.getItems().add("Easy");
+    	cbDifficulty.getItems().add("Moderate");
+    	cbDifficulty.getItems().add("Hard");
+    	cbType.getItems().add("Loop");
+    	cbType.getItems().add("Out and back");
+    	cbType.getItems().add("Point-to-point");
+    	tfName.setText(t.getName());
+    	tfTrailHead.setText(t.getTrailHead());
+    	tfLength.setText(t.getLength() + "");
+    	tfElevationGain.setText(t.getElevationGain() + "");
+    	cbDifficulty.getSelectionModel().select(t.getDifficulty());
+    	cbType.getSelectionModel().select(t.getType());
+    }
+    
+    public void createTrail(ActionEvent event) {
+    	
+    }
+
+    public void saveTrail(ActionEvent event) {
+
+    }
+
+}

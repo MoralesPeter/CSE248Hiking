@@ -84,4 +84,8 @@ public class User implements Serializable {
 	public HikingHistory getHikingHistory() {
 		return hikingHistory;
 	}
+	
+	public void setHikingHistory(HikingHistory hikingHistory) {
+		this.hikingHistory = hikingHistory;
+	}
 }

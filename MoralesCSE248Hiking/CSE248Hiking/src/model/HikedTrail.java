@@ -22,7 +22,7 @@ public class HikedTrail implements Serializable {
 	private double averagePace; //mins / miles
 	
 	public HikedTrail(Trail t, String dateStart, String timeStart, String dateFinish, String timeFinish, 
-			double distanceHiked, double duration, List<File> images, double averagePace) {
+			double distanceHiked, double duration, List<File> images) {
 		this.t = t;
 		this.dateStart = dateStart;
 		this.timeStart = timeStart;
@@ -96,5 +96,9 @@ public class HikedTrail implements Serializable {
 
 	public double getAveragePace() {
 		return averagePace;
+	}
+	
+	public String toString() {
+		return this.t.getName() + ": " + this.timeStart + " " + this.dateStart + " - " + this.timeFinish + " " + this.dateFinish + ", Distance: " + this.distanceHiked + " miles, Duration: " + this.duration + " mins, Avg. Pace: " + this.averagePace;
 	}
 }
